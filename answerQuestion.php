@@ -7,12 +7,15 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Umfragetool</title>
+        <title></title>
     </head>
     <body>
-        <p>hello</p>
         <?php
-        // put your code here
+        require_once('../mysqli_connect.php');
+
+        $query = "SELECT Question, Answer1 FROM frage";
+
+        $response = @mysql_query($dbc, $query);
         ?>
     </body>
 </html>
