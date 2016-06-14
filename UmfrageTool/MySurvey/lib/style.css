@@ -1,2 +1,44 @@
-@import url("../../bootstrap/css/bootstrap.min.css");
-@import url("../../bootstrap/css/bootstrap-responsive.min.css");
+@import url("bootstrap/css/bootstrap.min.css");
+@import url("bootstrap/css/bootstrap-responsive.min.css");
+
+.top-bar {
+	background:#333
+	;color:#fff
+	;display:-ms-flexbox
+	;display:flex;
+	-ms-flex-flow:row wrap;
+	flex-flow:row wrap;
+	-ms-flex-align:center;
+	align-items:center;
+	padding:1rem;
+	margin:-0.5rem;
+	font-size: 20px !important;
+    opacity:0.9;}
+
+.top-bar__left {
+	padding:0.5rem;
+	z-index:1000;
+	-ms-flex:1;
+	flex:1;}
+	
+.top-bar__right {
+	padding:0.5rem;
+	padding-right:1rem;
+	z-index:1000;
+	-ms-flex:1;
+	flex:1;
+	text-align:right;}
+
+.top-bar__nav {
+	display:-ms-inline-flexbox;
+	display:inline-flex;
+	-ms-flex-align:center;
+	align-items:center;}	
+	
+.top-bar__nav__item {
+	line-height:2rem;
+	padding:0 1rem;
+	color:white;
+	text-decoration:none;
+    }
+	

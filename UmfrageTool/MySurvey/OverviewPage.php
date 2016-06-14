@@ -10,9 +10,6 @@ class OverviewPage extends lib\HomePage {
 	protected function body(){
 		$ret='';
 		$ret.= "
-				<div class='subnav'>
-				<a class='btn btn-primary' href='index.php?p=login'>login</a>
-				</div>
 				<h2>Hier ist eine Liste aller Umfragen:</h2>
 				<table class='table table-striped table-bordered'>
 				";

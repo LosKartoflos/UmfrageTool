@@ -15,6 +15,7 @@ switch ($_GET['p']) {
 	case 'submissons':	$p=new SubmissionsPage('Beitr&auml;ge');break;
 	case 'admin':		$p=new AdminPage('Administrator');		break;
 	case 'login':		$p=new LoginPage('Login');				break;
+	case 'edit':		$p=new EditPage('Edit');				break;
 	default: 			$p=new OverviewPage('&Uuml;bersicht');
 }	
 }else {

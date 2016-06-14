@@ -25,6 +25,15 @@ trait DataBase{
 		return $arr;
 	}
 	
+		public static function createtbl($tbl){
+		try {
+			self::connect();
+			self::$connection->query($tbl);
+		} catch (\PDOException $e) {
+			error_log( 'Database Error: ' . $e->getMessage());
+		}
+	}
+	
 }
 //TODO:
 //Autoloading

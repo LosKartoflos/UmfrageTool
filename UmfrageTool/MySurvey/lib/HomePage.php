@@ -27,10 +27,18 @@ abstract class HomePage {
 						<link rel="stylesheet" type="text/css" href="lib/style.css" />
 						</head>
 						<body>
-						<div class="container">
-						<header  id="overview" class="hero-unit">
-						<h1>My Survey</h1>
-						<p class="lead">Das Instant-Umfrage-Tool</p>
+						<header>
+							<nav class="top-bar"> 
+        						<div class="top-bar__left">
+        							<a class="top-bar__nav__item" href="index.php"> LOGO </a>
+        						</div>
+        						<div class="top-bar__right">
+        							<div class="top-bar__nav">
+            							<a class="top-bar__nav__item" href="index.php?p=login"> Log in </a>
+            							<a class="top-bar__nav__item" href="sign_up.php"> Sign Up </a>
+        							</div>    
+        						</div>    
+        					</nav>
 						</header>
 						<section>
 						';

@@ -1,7 +1,7 @@
 <?php 
 namespace MySurvey;//Test hallo neue Version 2
 
-class AdminPage extends lib\HomePage {
+class EditPage extends lib\HomePage {
 	use lib\DataBase;
 
 	/*
@@ -24,18 +24,10 @@ class AdminPage extends lib\HomePage {
 			self::query("delete from tbl_beitraege where thread_ID = '$id'");
 		}
 		
-		if (isset($_POST["newsurvey"])){//Neuer Eintrag
-			$val=$_POST["newsurvey"];
-			if ($val!="") {
+		if (isset($_POST["newthread"])){//Neuer Eintrag
+			$val=$_POST["newthread"];
+			if ($val!="")
 				self::query("insert into tbl_umfragen values (NULL,'$val')");
-				self::createtbl("create table survey_'$val' (
-						id int NOT NULL AUTO_INCREMENT,
-						Question text,
-						Answer_1 text,
-						Answer_2 text,
-						Answer_3 text,
-						Answer_4 text)");
-			}
 		}
 	}
 
@@ -49,7 +41,10 @@ class AdminPage extends lib\HomePage {
 		}
 		
 		$ret.= "
-<h2>Umfragen-Verwaltung</h2>
+<div class='subnav'>
+<a class='btn btn-primary' href='index.php'>&Uuml;bersicht</a>
+</div>
+<h2>EditPage: Umfragen-Verwaltung</h2>
 		";
 		
 		$rows=self::query("select * from tbl_umfragen");
@@ -61,7 +56,7 @@ class AdminPage extends lib\HomePage {
 			$ret.= "
 <tr>
 <td>$row[name]</td>
-<td><form action='index.php?p=edit' method='post'><input name='edit$row[id]' class='btn btn-default' type='submit' value=' Bearbeiten ' /></form></td>
+<td><form action=index.php?p=edit' method='post'><input name='edit' class='btn btn-default' type='button' value=' Bearbeiten ' /></form></td>
 <td align='right'>L&ouml;schen?</td>
 <td><input type='checkbox' name='del$row[id]' value='$row[id]'></td>
 </tr>
@@ -70,7 +65,7 @@ class AdminPage extends lib\HomePage {
 		$ret.= '
 </table>
 <label>Neue Umfrage</label>
-<input name="newsurvey" type="text" size="40" maxlength="90"/>
+<input name="newthread" type="text" size="40" maxlength="90"/>
 <input class="btn btn-success" type="submit" value=" Absenden " />
 <input class="btn btn-warning" type="reset" value=" Abbrechen" />
 
