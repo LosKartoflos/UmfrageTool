@@ -48,7 +48,9 @@ abstract class HomePage {
 		return '
 				</section>
 				<footer>
+				<div class="footbar">
 				<p>&copy; '.date("Y").' by Sebastian Gritzbach & Simon Walther</p>
+				</div>
 				</footer>
 				</div>
 				</body>

@@ -10,20 +10,21 @@ class OverviewPage extends lib\HomePage {
 	protected function body(){
 		$ret='';
 		$ret.= "
-				<h2>Hier ist eine Liste aller Umfragen:</h2>
-				<table class='table table-striped table-bordered'>
-				";
-		$query=self::query("select * from tbl_umfragen");
-		$num=0;
-		$schalter=false;
-		foreach ($query as $row) {
-			$ret.=  "
-			<tr>
-			<td><i class='icon-inbox'></i>&nbsp;<a href='index.php?p=submissons&thread=$row[0]'>$row[1]</a></td>
-			</tr>
-			";
-		}
-		$ret.= '</table>';
+		<form action='index.php?p=survey' method='post'>
+		<div class='survey__pin'>
+			
+			
+			<div class='survey__pin__item'>
+			
+				<input class='form-control input-lg' name='surveypin' type='text' value=' Survey PIN ' />
+		
+			</div>
+			
+			<div class='survey__pin__item'>
+				<input class='btn btn-success btn-block btn-lg' type='submit' value=' Enter ' />
+			</div>
+		</div>		
+		</form>";
 		return $ret;
 	}
 
