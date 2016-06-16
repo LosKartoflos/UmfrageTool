@@ -30,7 +30,7 @@ abstract class HomePage {
 						<header>
 							<nav class="top-bar"> 
         						<div class="top-bar__left">
-        							<a class="top-bar__nav__item" href="index.php"> LOGO </a>
+        							<a class="top-bar__nav__item" href="index.php"><img src="lib/Logo.png" style="width:180px;height:40px;"> </a>
         						</div>
         						<div class="top-bar__right">
         							<div class="top-bar__nav">
