@@ -9,6 +9,7 @@ class EditPage extends lib\HomePage {
 	 */
 	protected function init(){
 		session_start();
+		var_dump($_POST);
 		$rows=self::query("select * from tbl_umfragen");
 		$toDelete=[];//Leer
 		foreach ($rows as $row){

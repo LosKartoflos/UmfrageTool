@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 11. Jun 2016 um 14:00
+-- Erstellungszeit: 17. Jun 2016 um 00:09
 -- Server-Version: 10.1.13-MariaDB
 -- PHP-Version: 7.0.6
 
@@ -19,21 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Datenbank: `mysurvey`
 --
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `tbl_1`
---
-
-CREATE TABLE `tbl_1` (
-  `id` int(11) NOT NULL,
-  `Question` text CHARACTER SET latin1 NOT NULL,
-  `Answer_1` text CHARACTER SET latin1 NOT NULL,
-  `Answer_2` text CHARACTER SET latin1 NOT NULL,
-  `Answer_3` text CHARACTER SET latin1 NOT NULL,
-  `Answer_4` text CHARACTER SET latin1 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -66,26 +51,22 @@ CREATE TABLE `tbl_threads` (
 
 CREATE TABLE `tbl_umfragen` (
   `id` int(11) NOT NULL,
-  `name` varchar(128) NOT NULL
+  `name` varchar(128) NOT NULL,
+  `options` text NOT NULL,
+  `hints` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Daten für Tabelle `tbl_umfragen`
 --
 
-INSERT INTO `tbl_umfragen` (`id`, `name`) VALUES
-(1, 'Umfrage_1'),
-(2, 'umfrage_2');
+INSERT INTO `tbl_umfragen` (`id`, `name`, `options`, `hints`) VALUES
+(34, 'Wie heiÃŸt deine Mudda?', 'Else;Irmtraud;Gisela', '0;0;0'),
+(35, 'Wie findest du?', 'sehr gut;gut;schlecht;sehr schlecht', '0;0;0;0');
 
 --
 -- Indizes der exportierten Tabellen
 --
-
---
--- Indizes für die Tabelle `tbl_1`
---
-ALTER TABLE `tbl_1`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indizes für die Tabelle `tbl_beitraege`
@@ -103,17 +84,13 @@ ALTER TABLE `tbl_threads`
 -- Indizes für die Tabelle `tbl_umfragen`
 --
 ALTER TABLE `tbl_umfragen`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`);
 
 --
 -- AUTO_INCREMENT für exportierte Tabellen
 --
 
---
--- AUTO_INCREMENT für Tabelle `tbl_1`
---
-ALTER TABLE `tbl_1`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT für Tabelle `tbl_beitraege`
 --
@@ -128,7 +105,7 @@ ALTER TABLE `tbl_threads`
 -- AUTO_INCREMENT für Tabelle `tbl_umfragen`
 --
 ALTER TABLE `tbl_umfragen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -16,7 +16,7 @@ class OverviewPage extends lib\HomePage {
 			
 			<div class='survey__pin__item'>
 			
-				<input class='form-control input-lg' name='surveypin' type='text' value=' Survey PIN ' />
+				<input class='form-control input-lg' name='surveypin' type='text' placeholder=' Survey PIN ' required/>
 		
 			</div>
 			
