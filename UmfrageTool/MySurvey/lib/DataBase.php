@@ -25,21 +25,6 @@ trait DataBase{
 		return $arr;
 	}
 	
-		public static function createsurveytbl($survey_id){
-		try {
-			self::connect();
-			self::$connection->prepare("create table survey_ (
-						id int NOT NULL AUTO_INCREMENT,
-						Question text,
-						Answer_1 text,
-						Answer_2 text,
-						Answer_3 text,
-						Answer_4 text)");
-		} catch (\PDOException $e) {
-			error_log( 'Database Error: ' . $e->getMessage());
-		}
-	}
-	
 }
 //TODO:
 //Autoloading

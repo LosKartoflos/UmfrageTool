@@ -41,9 +41,7 @@ class AdminPage extends lib\HomePage {
           
                 $options[] = $_POST["option" . $i];  
                 $hits[] = 0;  
-              
             	}  
-          
         		}  
           
         		// Array in String für Datenbank umwandeln  
@@ -51,11 +49,7 @@ class AdminPage extends lib\HomePage {
         		$hits = implode(";", $hits);  	
 				
 				self::query("insert into tbl_umfragen values (NULL,'$val','$options','$hits')");
-				//$last_id_array1=self::query("select id from tbl_umfragen where name='$val'");
-				//$last_id_array2=$last_id_array1[0];
-				//$last_id=$last_id_array2["id"];
-				//var_dump($last_id);
-				//self::createsurveytbl($last_id);
+				
 			}
 		}
 	}
@@ -89,8 +83,7 @@ class AdminPage extends lib\HomePage {
 			$ret.= "
 <tr>
 <td>$row[name]</td>";
-// <td><form action='index.php?p=edit' method='post'><input name='edit$row[id]' class='btn btn-default' type='submit' value=' Barbeiten ' /></form></td>
-//<td align='right'>L&ouml;schen?</td>
+
  $row["options"] = explode(";", $row["options"]); 
  for($i=0; $i<4; $i++) {  
       
@@ -102,14 +95,12 @@ $ret.= "
 </tr>
 			";
 		}
+		
+//Neue Umfrage erstellen
 		$ret.= '
 </table>
 <label>Neue Umfrage</label></br>
 <input name="newsurvey" type="text" size="30" maxlength="90" placeholder="Frage"/>';
-//<input name="answer_1" type="text" size="30" maxlength="90" placeholder="Antwort 1"/>
-//<input name="answer_2" type="text" size="30" maxlength="90" placeholder="Antwort 2"/>
-//<input name="answer_3" type="text" size="30" maxlength="90" placeholder="Antwort 3"/>
-//<input name="answer_4" type="text" size="30" maxlength="90" placeholder="Antwort 4"/>
 for($i=0; $i<4; $i++) {  
             $ret.=" <input type='text' name='option" . $i . "' placeholder='Antwort'>";  
           

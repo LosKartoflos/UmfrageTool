@@ -10,7 +10,7 @@
 	-ms-flex-align:center;
 	align-items:center;
 	padding:1rem;
-	font-size: 20px !important;
+	font-size: 20px;
     opacity:0.9;}
 
 .top-bar__left {
@@ -59,11 +59,23 @@
 	top: 50%;
 	margin-left: -150px;
 	margin-top: -100px;
-		}
+	}
 		
 .survey__pin__item {
 	padding: 1rem;
 	width: 300px;
+	}
+
+.middle_of_screen {
+	width: 500px;
+	height: 200px;	
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -250px;
+	margin-top: -100px;
+	text-align: center;
+	
 	}
 
 html, body {
