@@ -5,13 +5,35 @@ namespace MySurvey;
 class SurveyPage extends lib\HomePage {
 	use lib\DataBase;
 	protected function init(){
-		session_start();
+		
 	}
 	
 	protected function body(){
+		session_start();
+		if(isset($_POST["surveypin"])){
+			$pin=$_POST['surveypin'];}
+		else {
+			$pin=$_GET['surveypin'];}
+		
+		//Abfrage, ob schon abgestimmt wurde
+		if(isset($_SESSION['survey_'.$pin])){
+			$ret='';
+			$ret.='
+				<div class="middle_of_screen">
+						<h1>Sie haben bereits abgestimmt! <br></h1>  
+				</div>
+				';
+				return $ret;
+				
+		}
+		
+		else {
 		// Wenn abgestimmt wurde -> Datenbankeintrag  
 		if(isset($_POST["option"])) {  
 			$pin=$_GET['surveypin'];
+			
+			//Session ID blocken
+			$_SESSION['survey_'.$pin] = true;
 
     		// Bisherige Stimmen aus der Datenbank holen  
     		$data = self::query("select * from tbl_umfragen where id='$pin'"); 
@@ -38,6 +60,7 @@ class SurveyPage extends lib\HomePage {
 			</div>
 			';
 			return $ret;	
+			
 		}
 		
 		//Wenn nicht, Abstimmung!
@@ -45,31 +68,67 @@ class SurveyPage extends lib\HomePage {
 			$ret='';
 			$pin=$_POST['surveypin'];
 			$rows=self::query("select * from tbl_umfragen where id='$pin'");
-			$ret.='
-				<form action="index.php?p=survey&surveypin='. $pin .'" method="post">
-				<table class="table table-striped table-bordered">
- 				'; 	
+			
+			//Abfrage, ob Umfrage existiert
+			if(isset($rows['0'])){
+			
+				//Abfrage, ob Umfrage aktiv
+				$rows_array=$rows['0'];
+				if($rows_array['active']==true) {
+				
+					//Wenn ja, dann Abstimmung!
+					$ret.='
+						<form action="index.php?p=survey&surveypin='. $pin .'" method="post">
+						<table class="table table-striped table-bordered">
+ 						'; 	
 
 
-			foreach ($rows as $row) {
-				$ret.= "
-					<tr>
-					<td>$row[name]</td>";
+					foreach ($rows as $row) {
+						$ret.= "
+							<tr>
+							<td>$row[name]</td>";
+	
+ 						$row["options"] = explode(";", $row["options"]); 
+						for($i=0; $i<count($row["options"]); $i++) {  
+      						$ret.=' <td> <input type="radio" name="option" value="' . $i . '"> ' . $row["options"][$i] . ' </td>';
+      						}
+						$ret.= '
+							</table>
+							<input class="btn btn-success" type="submit" value=" Vote " />
+							<input class="btn btn-warning" type="reset" value=" Abbrechen" />
 
- 				$row["options"] = explode(";", $row["options"]); 
-				for($i=0; $i<count($row["options"]); $i++) {  
-      				$ret.=' <td> <input type="radio" name="option" value="' . $i . '"> ' . $row["options"][$i] . ' </td>';
-      				}
-				$ret.= '
-					</table>
-					<input class="btn btn-success" type="submit" value=" Vote " />
-					<input class="btn btn-warning" type="reset" value=" Abbrechen" />
-
-					</form>
-					';
+							</form>
+							';
+						}
+					return $ret;
+					}
+				
+				//Wenn Umfrage nicht aktiv, dann Meldung "Umfrage ist nicht aktiv!"	
+				else {
+					$ret='';
+					$ret.='
+						<div class="middle_of_screen">
+						<h1>Umfrage ist nicht aktiv!</h1> 
+						</div>
+						';
+					return $ret;
+					}	
 			}
-		return $ret;
+				
+			//Wenn Umfrage nicht existiert, dann Meldung "Umfrage ist nicht aktiv!"	
+			else {
+				$ret='';
+				$ret.='
+					<div class="middle_of_screen">
+					<h1>Umfrage ist nicht aktiv!</h1> 
+					</div>
+					';
+				return $ret;
+				}
+				
+		}
 	}
 	}
+	
 }
 ?>

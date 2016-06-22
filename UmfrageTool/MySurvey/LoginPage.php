@@ -35,9 +35,6 @@ class LoginPage extends lib\HomePage {
 	 */
 	protected function body(){
 		return '
-<div class="subnav">
-<a class="btn btn-primary" href="index.php">&Uuml;bersicht</a>
-</div>
 <h2>Login</h2>
 <form class="well" action="index.php?p=login" method="post">
 	<label>Benutzername:</label>

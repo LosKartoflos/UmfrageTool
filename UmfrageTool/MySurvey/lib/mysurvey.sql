@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 21. Jun 2016 um 13:06
+-- Erstellungszeit: 22. Jun 2016 um 12:05
 -- Server-Version: 10.1.13-MariaDB
 -- PHP-Version: 7.0.6
 
@@ -53,16 +53,17 @@ CREATE TABLE `tbl_umfragen` (
   `id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `options` text NOT NULL,
-  `hits` text NOT NULL
+  `hits` text NOT NULL,
+  `active` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Daten für Tabelle `tbl_umfragen`
 --
 
-INSERT INTO `tbl_umfragen` (`id`, `name`, `options`, `hits`) VALUES
-(34, 'Wie heiÃŸt deine Mudda?', 'Else;Irmtraud;Gisela', '3;4;2'),
-(35, 'Wie findest du?', 'sehr gut;gut;schlecht;sehr schlecht', '0;7;0;1');
+INSERT INTO `tbl_umfragen` (`id`, `name`, `options`, `hits`, `active`) VALUES
+(34, 'Wie heiÃŸt deine Mudda?', 'Else;Irmtraud;Gisela', '17;4;5', 0),
+(35, 'Wie findest du?', 'sehr gut;gut;schlecht;sehr schlecht', '6;10;0;2', 1);
 
 --
 -- Indizes der exportierten Tabellen
