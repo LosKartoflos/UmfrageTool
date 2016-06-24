@@ -65,6 +65,33 @@
 	padding: 1rem;
 	width: 300px;
 	}
+	
+.answer__array {
+	display:-ms-flexbox;
+	display:flex;
+	-ms-flex-flow:row wrap;
+	flex-flow:row wrap;
+	-ms-flex-align:center;
+	align-items:center;
+	width: 700px;
+	height: 200px;	
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -350px;
+	margin-top: -100px;
+	}
+
+.answer__array__head {
+	width: 700px;
+	text-align: center;
+	}
+			
+.answer__array__item {
+	padding: 1rem;
+	width: 350px;
+	
+	}
 
 .middle_of_screen {
 	width: 500px;
@@ -81,6 +108,11 @@
 html, body {
 	height:100%;
 	}
+	
+input, input[placeholder]{
+    text-align:center;
+
+}
 	
 footer {
 	width:100%;

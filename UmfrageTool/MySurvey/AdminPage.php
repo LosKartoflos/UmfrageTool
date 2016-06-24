@@ -9,7 +9,7 @@ class AdminPage extends lib\HomePage {
 	 */
 	protected function init(){
 		session_start();
-		$rows=self::query("select * from tbl_umfragen");
+		$rows=self::query("select * from tbl_surveys");
 		$toDelete=[];//Leer
 		foreach ($rows as $row){
 			$id=$row['id'];
@@ -20,36 +20,33 @@ class AdminPage extends lib\HomePage {
 		}
 		//Alle raus
 		foreach ($toDelete as $id) {
-			self::query("delete from tbl_umfragen where ID = '$id'");
-			self::query("delete from tbl_beitraege where thread_ID = '$id'");
+			self::query("delete from tbl_surveys where id = '$id'");
+			self::query("delete from tbl_hits where survey_id = '$id'");
 		}
 		
 		if (isset($_POST["newsurvey"])){//Neuer Eintrag
 			$val=$_POST["newsurvey"];
 			if ($val!="") {
 				
-				
-				// Definieren, dass $options und $hits ein Array ist  
-        		$options = array();  
-        		$hits = array();  
-      
-        		// Array mit Werten füllen  
-        		for($i=0; $i<4; $i++) {  
+        		// Daten in Datenbank schreiben  
+        		/*for($i=0; $i<4; $i++) {  
           
             	// Überprüfen, welche Felder frei gelassen wurden  
             	if($_POST["option" . $i] != "") {  
           
-                $options[] = $_POST["option" . $i];  
-                $hits[] = 0;  
+                $option.$i = $_POST["option" . $i];    
             	}  
-        		}  
-          
-        		// Array in String für Datenbank umwandeln  
-       			$options = implode(";", $options);  
-        		$hits = implode(";", $hits);  	
+        		}   	
+				*/
+				$option1 = $_POST["option1"];
+				$option2 = $_POST["option2"];
+				$option3 = $_POST["option3"];
+				$option4 = $_POST["option4"];
 				
-				self::query("insert into tbl_umfragen values (NULL,'$val','$options','$hits')");
-				
+				self::query("insert into tbl_surveys values (NULL,'$val','$option1','$option2','$option3','$option4','0')");
+				$last_ids=self::query("select * from tbl_surveys where question='$val'");
+				$last_id=$last_ids["0"]["id"];
+				self::query("insert into tbl_hits values (NULL,'$last_id','0','0','0','0')");
 			}
 		}
 	}
@@ -66,7 +63,7 @@ class AdminPage extends lib\HomePage {
 <h2>Umfragen-Verwaltung</h2>
 		";
 		
-		$rows=self::query("select * from tbl_umfragen");
+		$rows=self::query("select * from tbl_surveys");
 		$ret.='
 <form action="index.php?p=admin" method="post">
 <table class="table table-striped table-bordered">
@@ -82,12 +79,11 @@ class AdminPage extends lib\HomePage {
 		foreach ($rows as $row) {
 			$ret.= "
 <tr>
-<td>$row[name]</td>";
+<td>$row[question]</td>";
 
- $row["options"] = explode(";", $row["options"]); 
- for($i=0; $i<4; $i++) {  
+ for($i=1; $i<5; $i++) {  
       
-        $ret.=' <td>' . $row["options"][$i] . '</td>';
+        $ret.=' <td>' . $row["answer_".$i] . '</td>';
       
     }
 $ret.= "
@@ -101,7 +97,7 @@ $ret.= "
 </table>
 <label>Neue Umfrage</label></br>
 <input name="newsurvey" type="text" size="30" maxlength="90" placeholder="Frage"/>';
-for($i=0; $i<4; $i++) {  
+for($i=1; $i<5; $i++) {  
             $ret.=" <input type='text' name='option" . $i . "' placeholder='Antwort'>";  
           
         } 

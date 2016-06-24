@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 22. Jun 2016 um 12:05
+-- Erstellungszeit: 24. Jun 2016 um 13:01
 -- Server-Version: 10.1.13-MariaDB
 -- PHP-Version: 7.0.6
 
@@ -23,90 +23,78 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `tbl_beitraege`
+-- Tabellenstruktur für Tabelle `tbl_hits`
 --
 
-CREATE TABLE `tbl_beitraege` (
+CREATE TABLE `tbl_hits` (
   `id` int(11) NOT NULL,
-  `thread_ID` int(11) NOT NULL,
-  `text` text NOT NULL
+  `survey_id` int(11) NOT NULL,
+  `hits_1` int(11) DEFAULT NULL,
+  `hits_2` int(11) DEFAULT NULL,
+  `hits_3` int(11) DEFAULT NULL,
+  `hits_4` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Daten für Tabelle `tbl_hits`
+--
+
+INSERT INTO `tbl_hits` (`id`, `survey_id`, `hits_1`, `hits_2`, `hits_3`, `hits_4`) VALUES
+(1, 7, 1, 4, 1, 3);
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `tbl_threads`
+-- Tabellenstruktur für Tabelle `tbl_surveys`
 --
 
-CREATE TABLE `tbl_threads` (
+CREATE TABLE `tbl_surveys` (
   `id` int(11) NOT NULL,
-  `name` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `tbl_umfragen`
---
-
-CREATE TABLE `tbl_umfragen` (
-  `id` int(11) NOT NULL,
-  `name` varchar(128) NOT NULL,
-  `options` text NOT NULL,
-  `hits` text NOT NULL,
+  `question` text NOT NULL,
+  `answer_1` text NOT NULL,
+  `answer_2` text NOT NULL,
+  `answer_3` text NOT NULL,
+  `answer_4` text NOT NULL,
   `active` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Daten für Tabelle `tbl_umfragen`
+-- Daten für Tabelle `tbl_surveys`
 --
 
-INSERT INTO `tbl_umfragen` (`id`, `name`, `options`, `hits`, `active`) VALUES
-(34, 'Wie heiÃŸt deine Mudda?', 'Else;Irmtraud;Gisela', '17;4;5', 0),
-(35, 'Wie findest du?', 'sehr gut;gut;schlecht;sehr schlecht', '6;10;0;2', 1);
+INSERT INTO `tbl_surveys` (`id`, `question`, `answer_1`, `answer_2`, `answer_3`, `answer_4`, `active`) VALUES
+(7, 'Wie alt bist du?', '10', '20', '30', 'Ã¤lter...', 1);
 
 --
 -- Indizes der exportierten Tabellen
 --
 
 --
--- Indizes für die Tabelle `tbl_beitraege`
+-- Indizes für die Tabelle `tbl_hits`
 --
-ALTER TABLE `tbl_beitraege`
+ALTER TABLE `tbl_hits`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indizes für die Tabelle `tbl_threads`
+-- Indizes für die Tabelle `tbl_surveys`
 --
-ALTER TABLE `tbl_threads`
+ALTER TABLE `tbl_surveys`
   ADD PRIMARY KEY (`id`);
-
---
--- Indizes für die Tabelle `tbl_umfragen`
---
-ALTER TABLE `tbl_umfragen`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id` (`id`);
 
 --
 -- AUTO_INCREMENT für exportierte Tabellen
 --
 
 --
--- AUTO_INCREMENT für Tabelle `tbl_beitraege`
+-- AUTO_INCREMENT für Tabelle `tbl_hits`
 --
-ALTER TABLE `tbl_beitraege`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `tbl_hits`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT für Tabelle `tbl_threads`
+-- AUTO_INCREMENT für Tabelle `tbl_surveys`
 --
-ALTER TABLE `tbl_threads`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT für Tabelle `tbl_umfragen`
---
-ALTER TABLE `tbl_umfragen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+ALTER TABLE `tbl_surveys`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

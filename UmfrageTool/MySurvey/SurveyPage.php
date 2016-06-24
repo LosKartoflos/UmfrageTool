@@ -31,27 +31,28 @@ class SurveyPage extends lib\HomePage {
 		// Wenn abgestimmt wurde -> Datenbankeintrag  
 		if(isset($_POST["option"])) {  
 			$pin=$_GET['surveypin'];
+			$option=$_POST['option'];
 			
 			//Session ID blocken
 			$_SESSION['survey_'.$pin] = true;
 
     		// Bisherige Stimmen aus der Datenbank holen  
-    		$data = self::query("select * from tbl_umfragen where id='$pin'"); 
-			$data = $data["0"];  
-
-    		// String wieder zurück in ein Array einlesen  
-    		$data["hits"] = explode(";", $data["hits"]);  
-
-    		// Die Variable mit der Stimme des Users erhöhen  
-    		$data["hits"][$_POST["option"]]++;  
-      
-    		// Array zurück in String  
-    		$data["hits"] = implode(";", $data["hits"]);  
-      
+    		$data = self::query("select * from tbl_hits where survey_id='$pin'"); 
+			$vote=$data['0']['hits_'.$option];
+			
+			if($vote!="0"){
+				$vote++;
+				
+				}
+			else {
+				$vote=1;
+				}
+				
+				
     		// Datenbank Update  
-    		self::query("UPDATE tbl_umfragen SET hits='" . $data["hits"] . "' WHERE id='$pin'");    
+    		self::query("UPDATE tbl_hits SET hits_$option='" . $vote . "' WHERE survey_id='$pin'");    
       
-    		// Check  
+    		// Ausgabe:Vielen Dank für die Teilnahme! 
  			$ret='';
 			$ret.='
 			<div class="middle_of_screen">
@@ -67,7 +68,7 @@ class SurveyPage extends lib\HomePage {
 		else{
 			$ret='';
 			$pin=$_POST['surveypin'];
-			$rows=self::query("select * from tbl_umfragen where id='$pin'");
+			$rows=self::query("select * from tbl_surveys where id='$pin'");
 			
 			//Abfrage, ob Umfrage existiert
 			if(isset($rows['0'])){
@@ -79,24 +80,34 @@ class SurveyPage extends lib\HomePage {
 					//Wenn ja, dann Abstimmung!
 					$ret.='
 						<form action="index.php?p=survey&surveypin='. $pin .'" method="post">
-						<table class="table table-striped table-bordered">
  						'; 	
 
 
 					foreach ($rows as $row) {
 						$ret.= "
-							<tr>
-							<td>$row[name]</td>";
-	
- 						$row["options"] = explode(";", $row["options"]); 
-						for($i=0; $i<count($row["options"]); $i++) {  
-      						$ret.=' <td> <input type="radio" name="option" value="' . $i . '"> ' . $row["options"][$i] . ' </td>';
-      						}
+							<div class='answer__array'>	
+							<div class='answer__array__head'>
+								<h1>$row[question]</h1>
+								
+							</div>	
+							";
+							
+						for($i=1; $i<5; $i++) {  
+							if($row["answer_" . $i] != "") {
+      
+        						$ret.='
+									<div class="answer__array__item">
+								 	<button class="btn btn-success btn-block btn-lg" type="submit" name="option" value="' . $i . '">
+										' . $row["answer_".$i] . '</button>
+									</div>	
+									';
+										
+      
+   							 	}
+							}
+							
 						$ret.= '
-							</table>
-							<input class="btn btn-success" type="submit" value=" Vote " />
-							<input class="btn btn-warning" type="reset" value=" Abbrechen" />
-
+							</div>
 							</form>
 							';
 						}

@@ -32,16 +32,29 @@ class LoginPage extends lib\HomePage {
 
 	/*
 	 * Ausgabe
-	 */
-	protected function body(){
-		return '
-<h2>Login</h2>
-<form class="well" action="index.php?p=login" method="post">
-	<label>Benutzername:</label>
+	 <label>Benutzername:</label>
 	<input name="user" type="text" size="20" maxlength="40"/>
 	<label>Passwort:</label>
 	<input name="pass" type="password" size="20" maxlength="40"/>
     <input class="btn btn-success" type="submit" value=" Login " />
+	 */
+	protected function body(){
+		return '
+<form action="index.php?p=login" method="post">
+	
+	<div class="survey__pin">
+			
+			
+		<div class="survey__pin__item">
+			<input class="form-control input-lg" name="user" type="text" maxlength="40" placeholder=" User " required/>
+		</div>
+		<div class="survey__pin__item">
+			<input class="form-control input-lg" name="pass" type="password" maxlength="40" placeholder=" Password " required/>
+		</div>
+		<div class="survey__pin__item">
+			<input class="btn btn-success btn-block btn-lg" type="submit" value=" Login " />
+		</div>
+	</div>
 </form>
 		';
 	}
