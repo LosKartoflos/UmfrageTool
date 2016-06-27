@@ -1,0 +1,44 @@
+// top-bar.sass
+
+.top-bar
+	background:#333
+	display:-ms-flexbox
+	display:flex
+	-ms-flex-flow:row wrap
+	flex-flow:row wrap
+	-ms-flex-align:center
+	align-items:center
+	padding:1rem
+	font-size: 20px
+    opacity:0.9
+
+.top-bar__left
+	padding:0.5rem
+	z-index:1000
+	-ms-flex:1
+	flex:1
+
+.top-bar__right
+	padding:0.5rem
+	padding-right:1rem
+	z-index:1000
+	-ms-flex:1
+	flex:1
+	text-align:right
+
+.top-bar__nav
+	display:-ms-inline-flexbox
+	display:inline-flex
+	-ms-flex-align:center
+	align-items:center
+
+.top-bar__nav__item
+	line-height:2rem
+	padding:1rem
+	color:#d5d5d5
+	text-decoration:none
+
+
+.top-bar__nav__item:hover
+	color:#fff
+	text-decoration:none
