@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 24. Jun 2016 um 13:01
+-- Erstellungszeit: 29. Jun 2016 um 16:37
 -- Server-Version: 10.1.13-MariaDB
 -- PHP-Version: 7.0.6
 
@@ -23,10 +23,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `tbl_hits`
+-- Tabellenstruktur für Tabelle `hits_gritzbach_walther`
 --
 
-CREATE TABLE `tbl_hits` (
+CREATE TABLE `hits_gritzbach_walther` (
   `id` int(11) NOT NULL,
   `survey_id` int(11) NOT NULL,
   `hits_1` int(11) DEFAULT NULL,
@@ -36,19 +36,20 @@ CREATE TABLE `tbl_hits` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Daten für Tabelle `tbl_hits`
+-- Daten für Tabelle `hits_gritzbach_walther`
 --
 
-INSERT INTO `tbl_hits` (`id`, `survey_id`, `hits_1`, `hits_2`, `hits_3`, `hits_4`) VALUES
-(1, 7, 1, 4, 1, 3);
+INSERT INTO `hits_gritzbach_walther` (`id`, `survey_id`, `hits_1`, `hits_2`, `hits_3`, `hits_4`) VALUES
+(1, 7, 3, 4, 1, 4),
+(4, 10, 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `tbl_surveys`
+-- Tabellenstruktur für Tabelle `surveys_gritzbach_walther`
 --
 
-CREATE TABLE `tbl_surveys` (
+CREATE TABLE `surveys_gritzbach_walther` (
   `id` int(11) NOT NULL,
   `question` text NOT NULL,
   `answer_1` text NOT NULL,
@@ -59,26 +60,27 @@ CREATE TABLE `tbl_surveys` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Daten für Tabelle `tbl_surveys`
+-- Daten für Tabelle `surveys_gritzbach_walther`
 --
 
-INSERT INTO `tbl_surveys` (`id`, `question`, `answer_1`, `answer_2`, `answer_3`, `answer_4`, `active`) VALUES
-(7, 'Wie alt bist du?', '10', '20', '30', 'Ã¤lter...', 1);
+INSERT INTO `surveys_gritzbach_walther` (`id`, `question`, `answer_1`, `answer_2`, `answer_3`, `answer_4`, `active`) VALUES
+(7, 'Wie alt bist du?', '10', '20', '30', 'Ã¤lter...', 1),
+(10, 'Was ist gelb?', 'Sonne', 'Himmel', 'Wasser', 'Blut', 1);
 
 --
 -- Indizes der exportierten Tabellen
 --
 
 --
--- Indizes für die Tabelle `tbl_hits`
+-- Indizes für die Tabelle `hits_gritzbach_walther`
 --
-ALTER TABLE `tbl_hits`
+ALTER TABLE `hits_gritzbach_walther`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indizes für die Tabelle `tbl_surveys`
+-- Indizes für die Tabelle `surveys_gritzbach_walther`
 --
-ALTER TABLE `tbl_surveys`
+ALTER TABLE `surveys_gritzbach_walther`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -86,15 +88,15 @@ ALTER TABLE `tbl_surveys`
 --
 
 --
--- AUTO_INCREMENT für Tabelle `tbl_hits`
+-- AUTO_INCREMENT für Tabelle `hits_gritzbach_walther`
 --
-ALTER TABLE `tbl_hits`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `hits_gritzbach_walther`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT für Tabelle `tbl_surveys`
+-- AUTO_INCREMENT für Tabelle `surveys_gritzbach_walther`
 --
-ALTER TABLE `tbl_surveys`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+ALTER TABLE `surveys_gritzbach_walther`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
