@@ -1,0 +1,77 @@
+//Sass-Dokument;-)
+@import top-bar
+@import footer
+@import bootstrap/css/bootstrap.min.css
+
+
+html, body
+	height:100%
+
+
+input, input[placeholder]
+    text-align:center
+
+
+.survey__pin
+	display:-ms-flexbox
+	display:flex
+	-ms-flex-flow:column wrap
+	flex-flow:column wrap
+	-ms-flex-align:center
+	align-items:center
+	width: 300px
+	height: 200px
+	position: absolute
+	left: 50%
+	top: 50%
+	margin-left: -150px
+	margin-top: -100px
+
+
+.survey__pin__item
+	padding: 1rem
+	width: 300px
+
+
+.answer__array
+	display:-ms-flexbox
+	display:flex
+	-ms-flex-flow:row wrap
+	flex-flow:row wrap
+	-ms-flex-align:center
+	align-items:center
+	width: 700px
+	height: 200px
+	position: absolute
+	left: 50%
+	top: 50%
+	margin-left: -350px
+	margin-top: -100px
+
+
+.answer__array__head
+	width: 700px
+	text-align: center
+
+
+.answer__array__item
+	padding: 1rem
+	width: 350px
+
+
+.middle_of_screen
+	width: 500px
+	height: 200px
+	position: absolute
+	left: 50%
+	top: 50%
+	margin-left: -250px
+	margin-top: -100px
+	text-align: center
+
+@media only screen and (max-width: 700px)
+  /* For mobile phones: */
+  [class*="answer__array"]
+    width: 100%
+    margin-left: 0px
+    left:auto

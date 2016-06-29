@@ -24,13 +24,21 @@ abstract class HomePage {
 				<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 				<![endif]-->
 				<title>'.$this->name.'</title>
-						<link rel="stylesheet" type="text/css" href="lib/style.css" />
-						</head>
+				<meta name="viewport" content="width=device-width, initial-scale=1.0">
+				<link rel="stylesheet" type="text/css" href="lib/CSS/style.css" />
+				</head>
 						<body>
-						<div class="container">
-						<header  id="overview" class="hero-unit">
-						<h1>My Survey</h1>
-						<p class="lead">Das Instant-Umfrage-Tool</p>
+						<header>
+							<nav class="top-bar">
+        						<div class="top-bar__left">
+        							<a class="top-bar__nav__item" href="index.php"><img src="lib/Logo.png" style="width:180px;height:40px;"> </a>
+        						</div>
+        						<div class="top-bar__right">
+        							<div class="top-bar__nav">
+            							<a class="top-bar__nav__item" href="index.php?p=login"> Log in </a>
+        							</div>
+        						</div>
+        					</nav>
 						</header>
 						<section>
 						';
@@ -40,7 +48,9 @@ abstract class HomePage {
 		return '
 				</section>
 				<footer>
+				<div class="footbar">
 				<p>&copy; '.date("Y").' by Sebastian Gritzbach & Simon Walther</p>
+				</div>
 				</footer>
 				</div>
 				</body>
